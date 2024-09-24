@@ -18,7 +18,7 @@ class Organismo {
     this.percepcao = map(dna[1], 0, 1, 50, 200);
     this.tamanho = map(dna[2], 0, 1, 4, 8);
     this.velocidade = PVector.random2D();
-    if((this.tamanho+this.velocidadeMax+this.percepcao)%2==0){
+    if((int)(this.tamanho+this.velocidadeMax+this.percepcao)%2==0){
        this.sexo= 1; //homem
     }
     else{
@@ -74,6 +74,7 @@ class Organismo {
     
     for (Organismo r : populacao) {
       float d = PVector.dist(posicao, r.posicao);
+      
       if (d < dist && d < 29 && sexo != r.sexo) {
         dist = d;
         maisProximo = r;
@@ -86,7 +87,7 @@ class Organismo {
   
   Organismo reproduzir(Organismo bah) {
     // Reproduz com uma probabilidade baseada na saúde
-    if (random(1) < 0.05 && vida > 50 && bah.vida > 50) {
+    if (random(1) < 0.005 && vida > 30 && bah.vida > 30) {
       float[] novoDna = new float[3];
       for(int i=0; i<3; i++){
            int gary = (int)random(0,2);
@@ -104,7 +105,6 @@ class Organismo {
       
       vida-=10;
       println("Novo organismo nascido! DNA: " + novoDna[0] + ", " + novoDna[1] + ", " + novoDna[2]);
-  
       return new Organismo(posicao, novoDna);
     } else {
       return null;
