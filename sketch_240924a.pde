@@ -1,4 +1,3 @@
-// Parâmetros da Simulação
 int tamanhoDaPopulacao = 100;    // Tamanho da população
 int geracao = 0;                // Contador de gerações
 ArrayList<Organismo> populacao; // Lista de organismos
